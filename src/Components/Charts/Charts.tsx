@@ -1,11 +1,26 @@
 import React from 'react';
+import DateTimePicker from 'react-datetime-picker';
 
-export class Charts extends React.Component{
-    render(){
+export class Charts extends React.Component {
+    constructor(props: any) {
+        super(props)
+        this.state = {
+            date: new Date()
+        }
+    }
+
+    onChange(date: any) {
+        this.setState({ date })
+    }
+
+    render() {
+        const { ...date } = this.state;
         return (
             <React.Fragment>
-                <h1>acá va el título</h1>
-                <p>acá va la descripción</p>
+                <DateTimePicker
+                    onChange={this.onChange}
+                    value={date}
+                />
             </React.Fragment>
         )
     }
