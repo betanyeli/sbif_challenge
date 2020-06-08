@@ -1,0 +1,15 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-sbifchallenge-dev-232150-authRole",
+            "UnauthRoleArn": "arn:aws:iam::115173459092:role/amplify-sbifchallenge-dev-232150-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::115173459092:role/amplify-sbifchallenge-dev-232150-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-sbifchallenge-dev-232150-deployment",
+            "UnauthRoleName": "amplify-sbifchallenge-dev-232150-unauthRole",
+            "StackName": "amplify-sbifchallenge-dev-232150",
+            "StackId": "arn:aws:cloudformation:us-east-1:115173459092:stack/amplify-sbifchallenge-dev-232150/df758ec0-a7a4-11ea-a699-12c9c271ca70",
+            "AmplifyAppId": "d7mibsolrsyt9"
+        }
+    }
+}
