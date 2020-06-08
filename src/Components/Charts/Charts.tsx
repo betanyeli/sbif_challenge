@@ -1,34 +1,51 @@
 import React from 'react';
-import DateTimePicker from 'react-datetime-picker';
 import moment from 'moment';
 
-interface DateConstructor{
-StartDate: any
+
+interface DateConstructor {
+    StartDate: any
+    EndDate: any,
+
+    
+
 }
 
 export class Charts extends React.Component<{}, DateConstructor> {
     constructor(props: any) {
         super(props)
         this.state = {
-            StartDate: new Date()
+            StartDate: new Date(),
+            EndDate: new Date(),
+   
+
+
         }
-        this.onChange = this.onChange.bind(this)
+        this.onChangeStart = this.onChangeStart.bind(this);
+        this.onChangeEnd = this.onChangeEnd.bind(this);
     }
 
-    onChange(date: any) {
-        console.log("Moment is working", moment(this.state.StartDate).format("DD-MM-YYYY"))
-        this.setState({ StartDate: date })
-        
+    onChangeStart(e: any) {
+        this.setState({ StartDate: e.target.value})
+        console.log("Start", e.target.value);
+
+
+
+    }
+
+    onChangeEnd(e: any) {
+        this.setState({ EndDate: e.target.value })
+        console.log("End", e.target.value);
+
     }
 
     render() {
-        const {StartDate} = this.state
+       const { StartDate, EndDate} = this.state
+
         return (
             <React.Fragment>
-                <DateTimePicker
-                    onChange={this.onChange}
-                    value={StartDate}
-                />
+                <input type="date" value= {StartDate} onChange={this.onChangeStart}></input>
+                <input type="date" value= {EndDate} onChange={this.onChangeEnd}></input>
+
             </React.Fragment>
         )
     }
