@@ -9,7 +9,8 @@ interface NavConstructor {
   Params: any,
   Dollar: any,
   Euro: any,
-  UFs: any
+  UFs: any,
+  UTM: any
 
 }
 
@@ -20,10 +21,11 @@ export class Appbar extends React.Component<{}, NavConstructor> {
   constructor(props: any) {
     super(props);
     this.state = {
-      Params: ["dolar", "euro", "uf"],
+      Params: ["dolar", "euro", "uf", "utm"],
       Dollar: '',
       Euro: '',
-      UFs: ''
+      UFs: '',
+      UTM: ''
     }
   }
 
@@ -31,6 +33,7 @@ export class Appbar extends React.Component<{}, NavConstructor> {
     let dollarQuery: string = `${apiInput}${this.state.Params[0]}?apikey=${apiKey}&formato=json`
     let euroQuery: string = `${apiInput}${this.state.Params[1]}?apikey=${apiKey}&formato=json`
     let ufQuery: string = `${apiInput}${this.state.Params[2]}?apikey=${apiKey}&formato=json`
+    let utmQuery: string = `${apiInput}${this.state.Params[3]}?apikey=${apiKey}&formato=json`
 
     axios.get(dollarQuery).then(res => { this.setState({ Dollar: res.data.Dolares[0] }) })
       .catch(err => { console.log(err) })
@@ -41,11 +44,14 @@ export class Appbar extends React.Component<{}, NavConstructor> {
     axios.get(ufQuery).then(res => { this.setState({ UFs: res.data.UFs[0] }) })
       .catch(err => { console.log(err) })
 
+    axios.get(utmQuery).then(res => { this.setState({ UTM: res.data.UTMs[0] }) })
+      .catch(err => { console.log(err) })
+
   }
 
   render() {
-    const { Dollar, Euro, UFs } = this.state;
-    console.log(Dollar, Euro, UFs)
+    const { Dollar, Euro, UFs, UTM } = this.state;
+
     return (
       <Navbar collapseOnSelect expand="lg" className="custom-nav">
         <Navbar.Brand href="#home">SBIF</Navbar.Brand>
@@ -56,13 +62,17 @@ export class Appbar extends React.Component<{}, NavConstructor> {
               Indicadores al {moment().format("LL")} :
             </Nav.Link>
             <Nav.Link >
-              Dólar: {Dollar.Valor}
+              Dólar: ${Dollar.Valor}
             </Nav.Link>
             <Nav.Link >
-              Euro: {Euro.Valor}
+              Euro: ${Euro.Valor}
             </Nav.Link>
             <Nav.Link >
-              UF: {UFs.Valor}
+              UF: ${UFs.Valor}
+            </Nav.Link>
+
+            <Nav.Link >
+              UTM: ${UTM.Valor}
             </Nav.Link>
           </Nav>
 
