@@ -21,7 +21,9 @@
     "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "typescript": "^3.7.5"
+    "save": "^2.4.0",
+    "typescript": "^3.7.5",
+    "typewriter-effect": "^2.13.1"
   },
   "scripts": {
     "start": "react-scripts start",
