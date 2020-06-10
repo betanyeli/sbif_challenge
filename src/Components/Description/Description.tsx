@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Texts from '../Api/Texts.json'
+import * as Texts from '../Utils/Texts.json'
 
 export class Description extends React.Component {
     render() {

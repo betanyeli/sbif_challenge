@@ -1,8 +1,12 @@
-.custom-nav{
-    background-color: #0377a8;
+.custom-nav {
+    background-color: #80ffdb;
 
 }
 
 .navbar-light .navbar-brand  {
     color:white !important;
+}
+
+.navbar{
+    justify-content: center !important;
 }
