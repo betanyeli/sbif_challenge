@@ -9,20 +9,20 @@ Construir una aplicación web que permita obtener y visualizar el valor del dól
 
 ## Requerimientos funcionales
 
--   Definir el rango de tiempo a consultar (fecha inicial y fecha final).
--   Invocar la API de la SBIF para obtener los valores del dólar.
--   Mostrar y visualizar en un gráfico los valores consultados para el rango de fechas.
--   Mostrar promedio, valor máximo y mínimo en el rango de fechas definido.
-- El usuario debe poder acceder a través de una URL.
+-   :heavy_check_mark: Definir el rango de tiempo a consultar (fecha inicial y fecha final).
+-   :heavy_check_mark: Invocar la API de la SBIF para obtener los valores del dólar.
+-   :heavy_check_mark: Mostrar y visualizar en un gráfico los valores consultados para el rango de fechas.
+-   :heavy_check_mark: Mostrar promedio, valor máximo y mínimo en el rango de fechas definido.
+- :heavy_check_mark: El usuario debe poder acceder a través de una URL => [https://d2fsn0bshk955j.cloudfront.net/](https://d2fsn0bshk955j.cloudfront.net/).
 
 ## Requerimientos no funcionales
 
--   Debe ser responsivo
--   Actualizar de forma asíncrona el contenido y los gráficos asociados al modificar el rango de fechas
-- Información sensible debe estar debidamente protegida.
+-   :heavy_check_mark: Debe ser responsivo
+-   :heavy_check_mark: Actualizar de forma asíncrona el contenido y los gráficos asociados al modificar el rango de fechas
+- :heavy_check_mark: Información sensible debe estar debidamente protegida.
 
 
-## Stack tecnológico
+## :computer: Stack tecnológico
 
 Esta web app fue desarrollada utilizando las siguientes tecnologías / librerías
 ### Frontend:
@@ -38,10 +38,10 @@ Esta web app fue desarrollada utilizando las siguientes tecnologías / librería
 ### Backend:
 - Amplify AWS CloudFront & S3
 
-### Prototipo de baja fidelidad:
+## :art: Prototipo de baja fidelidad:
 ![1](src/Components/Utils/whiteboard.PNG)
 
-## Herramienta de gestión de proyecto:
+## :pencil: Herramienta de gestión de proyecto:
 
  -  [Github Project](https://github.com/betanyeli/sbif_challenge/projects/1)
 
