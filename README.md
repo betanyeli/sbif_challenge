@@ -47,6 +47,10 @@ Esta web app fue desarrollada utilizando las siguientes tecnologías / librería
 ## :pencil: Herramienta de gestión de proyecto:
 
  -  [Github Project](https://github.com/betanyeli/sbif_challenge/projects/1)
+ 
+## :bug: Issues :eyes:
+
+-[Fix](https://github.com/betanyeli/sbif_challenge/issues)
 
 ## :collision: AWS CLOUDFRONT DEPLOY :collision:
 
