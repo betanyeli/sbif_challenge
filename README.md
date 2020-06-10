@@ -39,7 +39,10 @@ Esta web app fue desarrollada utilizando las siguientes tecnologías / librería
 - Amplify AWS CloudFront & S3
 
 ### Prototipo de baja fidelidad:
-![1](src/Components/Utils/whiteboard.png)
+![1](src/Components/Utils/whiteboard.PNG)
+
+### :rainbow: Paleta de Colores
+![2](src/Components/Utils/palette.PNG)
 
 ## Herramienta de gestión de proyecto:
 
