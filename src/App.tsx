@@ -12,12 +12,12 @@ function App() {
       <Container fluid>
 
         <Row className="row">
-          <Col className="left">Col 1</Col>
-          <Col className="center" xs={8} md={8}>
+          <Col className="left"></Col>
+          <Col className="center" xs={10} md={8}>
             <Description />
             <Charts />
           </Col>
-          <Col className="right">Col 3</Col>
+          <Col className="right"></Col>
         </Row>
 
       </Container>

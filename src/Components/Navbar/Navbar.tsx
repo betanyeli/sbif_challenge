@@ -1,33 +1,83 @@
 import React from 'react';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
+import moment from 'moment';
+import 'moment/locale/es';
+import axios from 'axios';
 import './Styles.css'
 
-export class Appbar extends React.Component {
+interface NavConstructor {
+  Params: any,
+  Dollar: any,
+  Euro: any,
+  UFs: any,
+  UTM: any
+
+}
+
+const apiInput: any = process.env.REACT_APP_DEFAULT_INPUT
+const apiKey: any = process.env.REACT_APP_API_KEY
+
+export class Appbar extends React.Component<{}, NavConstructor> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      Params: ["dolar", "euro", "uf", "utm"],
+      Dollar: '',
+      Euro: '',
+      UFs: '',
+      UTM: ''
+    }
+  }
+
+  componentDidMount() {
+    let dollarQuery: string = `${apiInput}${this.state.Params[0]}?apikey=${apiKey}&formato=json`
+    let euroQuery: string = `${apiInput}${this.state.Params[1]}?apikey=${apiKey}&formato=json`
+    let ufQuery: string = `${apiInput}${this.state.Params[2]}?apikey=${apiKey}&formato=json`
+    let utmQuery: string = `${apiInput}${this.state.Params[3]}?apikey=${apiKey}&formato=json`
+
+    axios.get(dollarQuery).then(res => { this.setState({ Dollar: res.data.Dolares[0] }) })
+      .catch(err => { console.log(err) })
+
+    axios.get(euroQuery).then(res => { this.setState({ Euro: res.data.Euros[0] }) })
+      .catch(err => { console.log(err) })
+
+    axios.get(ufQuery).then(res => { this.setState({ UFs: res.data.UFs[0] }) })
+      .catch(err => { console.log(err) })
+
+    axios.get(utmQuery).then(res => { this.setState({ UTM: res.data.UTMs[0] }) })
+      .catch(err => { console.log(err) })
+
+  }
+
   render() {
+    const { Dollar, Euro, UFs, UTM } = this.state;
+
     return (
-<Navbar collapseOnSelect expand="lg" className="custom-nav">
-  <Navbar.Brand href="#home">SBIF</Navbar.Brand>
-  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-  <Navbar.Collapse id="responsive-navbar-nav">
-    <Nav className="mr-auto">
-      <Nav.Link href="#features">aQUI</Nav.Link>
-      <Nav.Link href="#pricing">VA</Nav.Link>
-      <NavDropdown title="ALGO" id="collasible-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item href="#action/3.4">aLGUNA VAINA</NavDropdown.Item>
-      </NavDropdown>
-    </Nav>
-    <Nav>
-      <Nav.Link href="#deets">AQUI TMB</Nav.Link>
-      <Nav.Link eventKey={2} href="#memes">
-        Y AQUI
-      </Nav.Link>
-    </Nav>
-  </Navbar.Collapse>
-</Navbar>
+      <Navbar collapseOnSelect expand="lg" className="custom-nav">
+        <Navbar.Brand href="#home">SBIF</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav" className="collapse">
+          <Nav className="mr-auto">
+            <Nav.Link >
+              Indicadores al {moment().format("LL")} :
+            </Nav.Link>
+            <Nav.Link >
+              Dólar: ${Dollar.Valor}
+            </Nav.Link>
+            <Nav.Link >
+              Euro: ${Euro.Valor}
+            </Nav.Link>
+            <Nav.Link >
+              UF: ${UFs.Valor}
+            </Nav.Link>
+
+            <Nav.Link >
+              UTM: ${UTM.Valor}
+            </Nav.Link>
+          </Nav>
+
+        </Navbar.Collapse>
+      </Navbar>
     )
   }
 }

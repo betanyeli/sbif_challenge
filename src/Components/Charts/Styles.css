@@ -1,0 +1,13 @@
+.col-styles{
+    padding: 0.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.canvas-container {
+    height: 60vh;
+  }
+
+.row{
+    margin-top: 0.5em;
+}

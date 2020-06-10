@@ -1,8 +1,20 @@
-.custom-nav{
-    background-color: #0377a8;
+.custom-nav {
+    background-color: #03045e;
 
 }
 
 .navbar-light .navbar-brand  {
     color:white !important;
+}
+
+.navbar{
+    justify-content: space-between !important;
+}
+
+a {
+    color:#80ffdb !important;
+}
+
+.mr-auto{
+    justify-content: center;
 }

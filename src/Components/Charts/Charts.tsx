@@ -1,13 +1,24 @@
 import React from 'react';
-import moment from 'moment';
 import axios from 'axios';
-import { Button } from 'react-bootstrap'
+import { Line } from 'react-chartjs-2';
+import { Button, Container, Col, Row } from 'react-bootstrap'
+import * as _ from 'lodash';
+import moment from 'moment';
+import * as Utils from '../Utils/Utils'
+import './Styles.css'
 
 
 interface DateConstructor {
     StartDate: any
     EndDate: any,
+    StartDateApi: any,
+    EndDateApi: any,
+    dataX: any, 
+    dataY: any,
+
 }
+
+
 
 const apiInput = process.env.REACT_APP_API_INPUT;
 const apiKey = process.env.REACT_APP_API_KEY;
@@ -18,6 +29,11 @@ export class Charts extends React.Component<{}, DateConstructor> {
         this.state = {
             StartDate: new Date(),
             EndDate: new Date(),
+            StartDateApi: '',
+            EndDateApi: '',
+            dataX: '',
+            dataY: '',
+     
 
         }
         this.onChangeStart = this.onChangeStart.bind(this);
@@ -25,36 +41,91 @@ export class Charts extends React.Component<{}, DateConstructor> {
         this.getData = this.getData.bind(this)
     }
 
-    getData() {
-        axios.get(`${apiInput}2010/01/dias_i/04/2010/01/dias_f/05?apikey=${apiKey}&formato=json`)
+
+    async componentDidMount(){
+        let startDate: any = Utils.destructuredDate("2020-06-01", true)
+        let endDate: any = Utils.destructuredDate(moment().format("YYYY-MM-DD"), false)
+       await axios.get(`${apiInput}${startDate}/${endDate}?apikey=${apiKey}&formato=json`)
             .then(res => {
-                const result = res.data;
-                console.log("result", result)
+                const result = res.data.Dolares;
+                this.setState({dataX: _.map(result, 'Fecha'), dataY: _.map(result, 'Valor')})
+                console.log("result", this.state.dataX)
             })
             .catch(err => console.log(err))
+
+            console.log("Promedio", Utils.average(Utils.replacer(this.state.dataY)))
+ 
+    }
+    
+    getData() {
+
+        axios.get(`${apiInput}${this.state.StartDateApi}/${this.state.EndDateApi}?apikey=${apiKey}&formato=json`)
+            .then(res => {
+                const result = res.data.Dolares;
+                this.setState({dataX: _.map(result, 'Fecha'), dataY: _.map(result, 'Valor')})
+                console.log("Promedio", Utils.average(Utils.replacer(this.state.dataY)))
+                console.log("Valor Máximo", Math.max(...Utils.replacer(this.state.dataY)))
+                console.log("Valor Mínimo", Math.min(...Utils.replacer(this.state.dataY)))
+            })
+            .catch(err => console.log(err))
+
 
     }
 
     onChangeStart(e: any) {
-        this.setState({ StartDate: e.target.value })
+        this.setState({ StartDate: e.target.value, StartDateApi: Utils.destructuredDate(e.target.value, true) })
         console.log("Start", e.target.value);
 
     }
 
     onChangeEnd(e: any) {
-        this.setState({ EndDate: e.target.value })
+        this.setState({ EndDate: e.target.value, EndDateApi: Utils.destructuredDate(e.target.value, false)})
         console.log("End", e.target.value);
 
     }
 
     render() {
-        const { StartDate, EndDate } = this.state
+        const { StartDate, EndDate, dataX, dataY } = this.state
+        
+        const data = {
+            labels: Utils.formatDate(dataX),
+            datasets: [
+              {
+                label: 'Valores $',
+                data: Utils.replacer(dataY),
+                fill: false,          // Don't fill area under the line
+                borderColor: 'green'  // Line color
+              }
+            ]
+          }
+
+          const options = {
+            maintainAspectRatio: false	// Don't maintain w/h ratio
+          }
 
         return (
             <React.Fragment>
-                <input type="date" value={StartDate} onChange={this.onChangeStart}></input>
-                <input type="date" min={StartDate} value={EndDate} onChange={this.onChangeEnd}></input>
-                <Button onClick={this.getData} variant="primary">Click me</Button>
+                <Container>
+                    <Row className="row">
+                        <Col md={5} className="col-styles">
+                            <input type="date" value={StartDate} onChange={this.onChangeStart}></input>
+                            
+                        </Col>
+
+                        <Col md={5} className="col-styles">
+                        <input type="date" min={StartDate} value={EndDate} onChange={this.onChangeEnd}></input>
+                        </Col>
+                        <Col md={2} className="col-styles">
+                        <Button onClick={this.getData} variant="primary">Consultar</Button>
+                        </Col>
+
+                        <Col className="canvas-container">
+                        <Line data={data} options={options}/>
+                        </Col>
+                    </Row>
+                </Container>
+
+                
 
             </React.Fragment>
         )
