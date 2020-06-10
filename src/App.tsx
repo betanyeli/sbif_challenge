@@ -3,6 +3,7 @@ import './App.css';
 import Appbar from './Components/Navbar/Navbar'
 import Description from './Components/Description/Description'
 import Charts from './Components/Charts/Charts'
+import Footer from './Components/Footer/Footer'
 import { Container, Row, Col } from 'react-bootstrap'
 
 function App() {
@@ -19,8 +20,8 @@ function App() {
           </Col>
           <Col className="right"></Col>
         </Row>
-
       </Container>
+      <Footer />
     </React.Fragment>
 
 

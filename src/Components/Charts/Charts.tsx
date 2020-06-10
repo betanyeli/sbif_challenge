@@ -92,13 +92,13 @@ export class Charts extends React.Component<{}, DateConstructor> {
 
     onChangeStart(e: any) {
         this.setState({ StartDate: e.target.value, StartDateApi: Utils.destructuredDate(e.target.value, true) })
-        console.log("Start", e.target.value);
+        //console.log("Start", e.target.value);
 
     }
 
     onChangeEnd(e: any) {
         this.setState({ EndDate: e.target.value, EndDateApi: Utils.destructuredDate(e.target.value, false) })
-        console.log("End", e.target.value);
+        //console.log("End", e.target.value);
 
     }
 
@@ -112,7 +112,7 @@ export class Charts extends React.Component<{}, DateConstructor> {
                     label: 'Valores $',
                     data: Utils.replacer(dataY),
                     fill: false,
-                    borderColor: 'blue'
+                    borderColor: '#72efdd'
                 }
             ]
         }
@@ -140,7 +140,9 @@ export class Charts extends React.Component<{}, DateConstructor> {
                                     </Row>
 
                                 </Form.Group>
-                                <Button onClick={this.getData} variant="primary">Consultar</Button>
+                                <Button block
+                                onClick={this.getData} 
+                                variant="info">Consultar</Button>
                             </Form>
 
 
@@ -151,14 +153,15 @@ export class Charts extends React.Component<{}, DateConstructor> {
 
                 <Container>
                     <Row>
-                        <Col className="canvas-container">
-                            {init ? (<Card style={{ width: '18rem', borderRadius:'10px' }}>
+                        <Col xs={12} className="canvas-container">
+                            {init ? (
+                            <Card style={{ width: '16rem', borderRadius:'10px', marginLeft: 'auto' }}>
                                 <Card.Body>
                                     <Card.Title>Indicadores</Card.Title>
 
-                                    <Card.Text>Promedio: ${Math.floor(this.state.Average)}</Card.Text>
-                                    <Card.Text>Valor Máximo: ${this.state.Max}</Card.Text>
-                                    <Card.Text>Valor Mínimo: ${this.state.Min}</Card.Text>
+                                    <Card.Text>Promedio: ${Math.floor(Average)}</Card.Text>
+                                    <Card.Text>Valor Máximo: ${Max}</Card.Text>
+                                    <Card.Text>Valor Mínimo: ${Min}</Card.Text>
 
                                 </Card.Body>
                             </Card>) : <p>Indicadores al {moment().format("LL")}</p>}
