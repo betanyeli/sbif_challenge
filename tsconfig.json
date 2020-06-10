@@ -19,9 +19,8 @@
     "noEmit": true,
     "jsx": "react",
     "noImplicitAny": false,
-    "types": ["typewriter-effect"]
+   
   },
   "include": [
-    "src", "decs.d.ts"
-  ]
+    "src"]
 }

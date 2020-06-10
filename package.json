@@ -22,8 +22,7 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "save": "^2.4.0",
-    "typescript": "^3.7.5",
-    "typewriter-effect": "^2.13.1"
+    "typescript": "^3.7.5"
   },
   "scripts": {
     "start": "react-scripts start",
