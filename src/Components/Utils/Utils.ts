@@ -17,3 +17,9 @@ export const formatDate = (arr: any) => {
     }
   return result
 }
+
+export const destructuredDate = (date: any, isStartDate: boolean) => {
+    return (isStartDate)
+        ? date.replace(/(.{7}).{1}/, "$1/dias_i/").replace('-', '/')
+        : date.replace(/(.{7}).{1}/, "$1/dias_f/").replace('-', '/');
+}

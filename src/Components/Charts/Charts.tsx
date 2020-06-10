@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Line } from 'react-chartjs-2';
 import { Button, Container, Col, Row } from 'react-bootstrap'
 import * as _ from 'lodash';
+import moment from 'moment';
 import * as Utils from '../Utils/Utils'
 import './Styles.css'
 
@@ -14,15 +15,9 @@ interface DateConstructor {
     EndDateApi: any,
     dataX: any, 
     dataY: any,
-    width: any,
-    height: any
+
 }
 
-const destructuredDate = (date: any, isStartDate: boolean) => {
-    return (isStartDate)
-        ? date.replace(/(.{7}).{1}/, "$1/dias_i/").replace('-', '/')
-        : date.replace(/(.{7}).{1}/, "$1/dias_f/").replace('-', '/');
-}
 
 
 const apiInput = process.env.REACT_APP_API_INPUT;
@@ -38,8 +33,7 @@ export class Charts extends React.Component<{}, DateConstructor> {
             EndDateApi: '',
             dataX: '',
             dataY: '',
-            width: '',
-            height:''
+     
 
         }
         this.onChangeStart = this.onChangeStart.bind(this);
@@ -48,7 +42,18 @@ export class Charts extends React.Component<{}, DateConstructor> {
     }
 
 
-
+    async componentDidMount(){
+        let startDate: any = Utils.destructuredDate("2020-05-01", true)
+        let endDate: any = Utils.destructuredDate(moment().format("YYYY-MM-DD"), false)
+       await axios.get(`${apiInput}${startDate}/${endDate}?apikey=${apiKey}&formato=json`)
+            .then(res => {
+                const result = res.data.Dolares;
+                this.setState({dataX: _.map(result, 'Fecha'), dataY: _.map(result, 'Valor')})
+                console.log("result", this.state.dataX)
+            })
+            .catch(err => console.log(err))
+    }
+    
     getData() {
 
         axios.get(`${apiInput}${this.state.StartDateApi}/${this.state.EndDateApi}?apikey=${apiKey}&formato=json`)
@@ -62,13 +67,13 @@ export class Charts extends React.Component<{}, DateConstructor> {
     }
 
     onChangeStart(e: any) {
-        this.setState({ StartDate: e.target.value, StartDateApi: destructuredDate(e.target.value, true) })
+        this.setState({ StartDate: e.target.value, StartDateApi: Utils.destructuredDate(e.target.value, true) })
         console.log("Start", e.target.value);
 
     }
 
     onChangeEnd(e: any) {
-        this.setState({ EndDate: e.target.value, EndDateApi: destructuredDate(e.target.value, false)})
+        this.setState({ EndDate: e.target.value, EndDateApi: Utils.destructuredDate(e.target.value, false)})
         console.log("End", e.target.value);
 
     }
