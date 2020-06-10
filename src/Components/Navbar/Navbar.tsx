@@ -54,7 +54,7 @@ export class Appbar extends React.Component<{}, NavConstructor> {
 
     return (
       <Navbar collapseOnSelect expand="lg" className="custom-nav">
-        <Navbar.Brand href="#home">SBIF</Navbar.Brand>
+        <Navbar.Brand style={{marginRight: '3rem'}} href="#home">SBIF Challenge</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav" className="collapse">
           <Nav className="mr-auto">

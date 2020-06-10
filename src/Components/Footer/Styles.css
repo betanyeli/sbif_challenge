@@ -1,0 +1,9 @@
+.footer {
+    flex-shrink: 0;
+    text-align: center;
+    background-color: #03045e;
+    color:#80ffdb !important;
+    margin-top: 2.5em;
+    height: 10%;
+    padding-top: 1em;
+  }

@@ -1,44 +1,64 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# SBIF Challenge!
 
-## Available Scripts
+**Duración del Sprint:** 
+Viernes 05-06 al Martes 09-06-2020
 
-In the project directory, you can run:
+**Objetivo del Sprint**:
+Construir una aplicación web que permita obtener y visualizar el valor del dólar para un período de tiempo determinado, consultando a la API de la SBIF. La aplicación debe contar con lo siguiente:
 
-### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Requerimientos funcionales
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+-   Definir el rango de tiempo a consultar (fecha inicial y fecha final).
+-   Invocar la API de la SBIF para obtener los valores del dólar.
+-   Mostrar y visualizar en un gráfico los valores consultados para el rango de fechas.
+-   Mostrar promedio, valor máximo y mínimo en el rango de fechas definido.
+- El usuario debe poder acceder a través de una URL.
 
-### `npm test`
+## Requerimientos no funcionales
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-   Debe ser responsivo
+-   Actualizar de forma asíncrona el contenido y los gráficos asociados al modificar el rango de fechas
+- Información sensible debe estar debidamente protegida.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Stack tecnológico
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Esta web app fue desarrollada utilizando las siguientes tecnologías / librerías
+### Frontend:
+ - React Js
+ - TypeScript
+ - Bootstrap (UI CSS Framework)
+ - Lodash (Manejo óptimo de estructuras de datos)
+ - Moment (Parseo de fechas)
+ - Charts (Gráficos)
+ - Axios (Http request)
+ - Async Functions & Promises
+ - Api de SBIF
+### Backend:
+- Amplify AWS CloudFront & S3
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prototipo de baja fidelidad:
+![1](src/Components/Utils/whiteboard.png)
 
-### `npm run eject`
+## Herramienta de gestión de proyecto:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+ -  [Github Project](https://github.com/betanyeli/sbif_challenge/projects/1)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## :collision: AWS CLOUDFRONT DEPLOY :collision:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- :warning: Asegúrate de tener una cuenta de AWS services  :warning:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Ejecuta en la terminal `npm install -g @aws-amplify/cli`
 
-## Learn More
+-  `Amplify Configure` e inicia sesión en tu  cuenta de AWS 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- `Amplify Init` en la raíz de tu proyecto, para inicializarlo
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Ejecuta `Amplify add hosting`  para agregar el servicio de hosting.
+
+- Select AWS CloudFront & S3 Bucket
+
+- Select DEV option for HTTP or PROD for HTTPS.
+
+- Ejecuta `Amplify publish`
