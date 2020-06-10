@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Line } from 'react-chartjs-2';
-import { Button, Container, Col, Row, Card } from 'react-bootstrap'
+import { Button, Container, Col, Row, Card, Form } from 'react-bootstrap'
 import * as _ from 'lodash';
 import moment from 'moment';
 import * as Utils from '../Utils/Utils'
@@ -82,7 +82,7 @@ export class Charts extends React.Component<{}, DateConstructor> {
                     init: true
                 });
 
-               return result;
+                return result;
 
             })
             .catch(err => console.log(err))
@@ -125,35 +125,47 @@ export class Charts extends React.Component<{}, DateConstructor> {
             <React.Fragment>
                 <Container>
                     <Row className="row">
-                        <Col md={5} className="col-styles">
-                            <input type="date" value={StartDate} onChange={this.onChangeStart}></input>
+                        <Col className="col-styles">
+                            <Form>
+                                <Form.Group>
+                                    <Row>
+                                        <Col md={6} xs={12}>
+                                            <Form.Label>Inicio</Form.Label>
+                                            <Form.Control type="date" value={StartDate} onChange={this.onChangeStart} />
+                                        </Col>
+                                        <Col md={6} xs={12}>
+                                            <Form.Label>Fin</Form.Label>
+                                            <Form.Control type="date" min={StartDate} value={EndDate} onChange={this.onChangeEnd} />
+                                        </Col>
+                                    </Row>
+
+                                </Form.Group>
+                                <Button onClick={this.getData} variant="primary">Consultar</Button>
+                            </Form>
+
 
                         </Col>
 
-                        <Col md={5} className="col-styles">
-                            <input type="date" min={StartDate} value={EndDate} onChange={this.onChangeEnd}></input>
-                        </Col>
-                        <Col md={2} className="col-styles">
-                            <Button onClick={this.getData} variant="primary">Consultar</Button>
-                        </Col>
+                    </Row>
+                </Container>
 
+                <Container>
+                    <Row>
                         <Col className="canvas-container">
-{init ? (<Card style={{ width: '18rem' }}>
-                    <Card.Body>
-                        <Card.Title>Indicadores</Card.Title>
+                            {init ? (<Card style={{ width: '18rem', borderRadius:'10px' }}>
+                                <Card.Body>
+                                    <Card.Title>Indicadores</Card.Title>
 
-                        <Card.Text>Promedio: {this.state.Average}</Card.Text>
-                        <Card.Text>Valor máximo: {this.state.Max}</Card.Text>
-                        <Card.Text>Valor Mínimo: {this.state.Min}</Card.Text>
+                                    <Card.Text>Promedio: ${Math.floor(this.state.Average)}</Card.Text>
+                                    <Card.Text>Valor Máximo: ${this.state.Max}</Card.Text>
+                                    <Card.Text>Valor Mínimo: ${this.state.Min}</Card.Text>
 
-                    </Card.Body>
-                </Card>) : <p>Indicadores al {moment().format("LL")}</p>}
+                                </Card.Body>
+                            </Card>) : <p>Indicadores al {moment().format("LL")}</p>}
                             <Line data={data} options={options} />
                         </Col>
                     </Row>
                 </Container>
-
-
 
             </React.Fragment>
         )
