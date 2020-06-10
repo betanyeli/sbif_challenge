@@ -18,9 +18,10 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "types": ["typewriter-effect"]
   },
   "include": [
-    "src"
+    "src", "decs.d.ts"
   ]
 }

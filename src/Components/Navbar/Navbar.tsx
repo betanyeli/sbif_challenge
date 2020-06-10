@@ -1,5 +1,6 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar} from 'react-bootstrap';
+import {Typewriter} from 'typewriter-effect';
 import './Styles.css'
 
 export class Appbar extends React.Component {
