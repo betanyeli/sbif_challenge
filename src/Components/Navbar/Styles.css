@@ -1,5 +1,5 @@
 .custom-nav {
-    background-color: #80ffdb;
+    background-color: #03045e;
 
 }
 
@@ -8,5 +8,13 @@
 }
 
 .navbar{
-    justify-content: center !important;
+    justify-content: space-between !important;
+}
+
+a {
+    color:#80ffdb !important;
+}
+
+.mr-auto{
+    justify-content: center;
 }

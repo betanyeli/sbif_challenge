@@ -13,7 +13,7 @@ function App() {
 
         <Row className="row">
           <Col className="left"></Col>
-          <Col className="center" xs={8} md={8}>
+          <Col className="center" xs={10} md={8}>
             <Description />
             <Charts />
           </Col>

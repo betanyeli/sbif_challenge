@@ -43,7 +43,7 @@ export class Charts extends React.Component<{}, DateConstructor> {
 
 
     async componentDidMount(){
-        let startDate: any = Utils.destructuredDate("2020-05-01", true)
+        let startDate: any = Utils.destructuredDate("2020-06-01", true)
         let endDate: any = Utils.destructuredDate(moment().format("YYYY-MM-DD"), false)
        await axios.get(`${apiInput}${startDate}/${endDate}?apikey=${apiKey}&formato=json`)
             .then(res => {
@@ -52,6 +52,9 @@ export class Charts extends React.Component<{}, DateConstructor> {
                 console.log("result", this.state.dataX)
             })
             .catch(err => console.log(err))
+
+            console.log("Promedio", Utils.average(Utils.replacer(this.state.dataY)))
+ 
     }
     
     getData() {
@@ -60,9 +63,12 @@ export class Charts extends React.Component<{}, DateConstructor> {
             .then(res => {
                 const result = res.data.Dolares;
                 this.setState({dataX: _.map(result, 'Fecha'), dataY: _.map(result, 'Valor')})
-                console.log("result", this.state.dataX)
+                console.log("Promedio", Utils.average(Utils.replacer(this.state.dataY)))
+                console.log("Valor Máximo", Math.max(...Utils.replacer(this.state.dataY)))
+                console.log("Valor Mínimo", Math.min(...Utils.replacer(this.state.dataY)))
             })
             .catch(err => console.log(err))
+
 
     }
 
@@ -80,6 +86,7 @@ export class Charts extends React.Component<{}, DateConstructor> {
 
     render() {
         const { StartDate, EndDate, dataX, dataY } = this.state
+        
         const data = {
             labels: Utils.formatDate(dataX),
             datasets: [
@@ -92,10 +99,14 @@ export class Charts extends React.Component<{}, DateConstructor> {
             ]
           }
 
+          const options = {
+            maintainAspectRatio: false	// Don't maintain w/h ratio
+          }
+
         return (
             <React.Fragment>
                 <Container>
-                    <Row>
+                    <Row className="row">
                         <Col md={5} className="col-styles">
                             <input type="date" value={StartDate} onChange={this.onChangeStart}></input>
                             
@@ -107,8 +118,9 @@ export class Charts extends React.Component<{}, DateConstructor> {
                         <Col md={2} className="col-styles">
                         <Button onClick={this.getData} variant="primary">Consultar</Button>
                         </Col>
-                        <Col>
-                        <Line data={data}/>
+
+                        <Col className="canvas-container">
+                        <Line data={data} options={options}/>
                         </Col>
                     </Row>
                 </Container>
