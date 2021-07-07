@@ -13,14 +13,7 @@ Construir una aplicación web que permita obtener y visualizar el valor del dól
 -   :heavy_check_mark: Invocar la API de la SBIF para obtener los valores del dólar.
 -   :heavy_check_mark: Mostrar y visualizar en un gráfico los valores consultados para el rango de fechas.
 -   :heavy_check_mark: Mostrar promedio, valor máximo y mínimo en el rango de fechas definido.
-- :heavy_check_mark: El usuario debe poder acceder a través de una URL => [https://d2fsn0bshk955j.cloudfront.net/](https://d2fsn0bshk955j.cloudfront.net/).
-
-## Requerimientos no funcionales
-
--   :heavy_check_mark: Debe ser responsivo
--   :heavy_check_mark: Actualizar de forma asíncrona el contenido y los gráficos asociados al modificar el rango de fechas
-- :heavy_check_mark: Información sensible debe estar debidamente protegida.
-
+- :heavy_check_mark: El usuario debe poder acceder a través de una URL => [https://d2fsn0bshk955j.cloudfront.net/](https://d2fsn0bshk955j.cloudfront.net/). (Deploy en progreso de migración de host!)
 
 ## :computer: Stack tecnológico
 
